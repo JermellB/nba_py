@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import os
 
-from requests import get
+from security.safe_requests import get
 from nba_py.constants import League
 
 HAS_PANDAS = True
