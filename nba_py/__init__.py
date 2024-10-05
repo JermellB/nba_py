@@ -1,8 +1,7 @@
 from datetime import datetime, timedelta
 import os
-
-from requests import get
 from nba_py.constants import League
+from security import safe_requests
 
 HAS_PANDAS = True
 try:
@@ -83,7 +82,7 @@ def _get_json(endpoint, params, referer='scores'):
     """
     h = dict(HEADERS)
     h['referer'] = 'http://stats.nba.com/{ref}/'.format(ref=referer)
-    _get = get(BASE_URL.format(endpoint=endpoint), params=params,
+    _get = safe_requests.get(BASE_URL.format(endpoint=endpoint), params=params,
                headers=h)
     # print _get.url
     _get.raise_for_status()
